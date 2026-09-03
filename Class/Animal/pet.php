@@ -1,6 +1,6 @@
 <?php
 
-namespace pet;
+namespace Animals\Animal;
 
 class Animal
 {
