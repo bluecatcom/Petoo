@@ -4,6 +4,45 @@ namespace User;
 
 class Itens
 {
+    private array $items = [];
+    // ADICIONAR ITEM
+    public function addItem(string $item): void
+    {
+        $this->items[$item] = ($this->items[$item] ?? 0) + 1;
+    }
+    // REMOVER ITEM
+    public function removeItem(string $item): void
+    {
+        if (!isset($this->items[$item])) {
+            return;
+        }
+        $this->items[$item]--;
+        if ($this->items[$item] <= 0) {
+            unset($this->items[$item]);
+        }
+    }
+    // VER ITENS
+    public function viewitens()
+    {
+        return $this->items;
+    }
+}
+
+class BasicWater
+{
+    private float $price = 2.0;
+
+    public function buy(User $user): void
+    {
+        if ($user->getMoney() >= $this->price) {
+            $user->removeMoney($this->price);
+            $user->getItens()->addItem("basicwater");
+        }
+    }
+}
+
+
+    /*
     // BASIC
     private int $basicfeed;
     private int $basicwater;
@@ -52,4 +91,4 @@ class Itens
     private int $lingonberry;
     private int $sea_buckthorn_berry;
     private int $golden_berry;
-}
+    */

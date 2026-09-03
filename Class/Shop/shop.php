@@ -4,5 +4,6 @@ namespace Products;
 
 interface Shop
 {
-    public function comprar();
+    public function buy();
+    public function sell();
 }
