@@ -1,3 +1,3 @@
 <?php
 
-namespace Animals\Puff;
+namespace Animals;

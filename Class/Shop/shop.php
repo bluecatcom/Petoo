@@ -1,6 +1,6 @@
 <?php
 
-namespace Products\Shop;
+namespace Products;
 
 interface Shop
 {

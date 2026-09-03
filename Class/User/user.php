@@ -1,19 +1,16 @@
 <?php
 
-namespace Base\User;
+namespace User;
 
 class User
 {
-    public string $nome;
+    public string $name;
     //
-    private float $dinheiro;
-    private int $racao;
-    private int $agua;
-
+    private float $money;
     public function __construct()
     {
-        $this->dinheiro = 10.0;
-        $this->racao = 1;
-        $this->agua = 1;
+        $this->money = 10.0;
+        $this->basicfeed = 1;
+        $this->basicwater = 1;
     }
 }
