@@ -6,5 +6,6 @@ interface Shop
 {
     public function buy();
     public function sell();
+    public function sellAll();
     public function use();
 }
