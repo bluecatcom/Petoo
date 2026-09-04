@@ -16,17 +16,17 @@ class User
         $itens->addItem("basicwater");
     }
     // ADICIONAR DINHEIRO
-    public function addmoney($value)
+    public function addMoney($value): void
     {
         $this->money = $this->money + $value;
     }
     // REMOVER DINHEIRO
-    public function removemoney($value)
+    public function removeMoney($value): void
     {
         $this->money = $this->money - $value;
     }
     // VER DINHEIRO
-    public function viewmoney()
+    public function viewMoney(): int
     {
         return $this->money;
     }
