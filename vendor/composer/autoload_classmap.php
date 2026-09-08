@@ -6,6 +6,12 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Animal\\Animal' => $baseDir . '/Class/Animal/Animal.php',
+    'App\\Animal\\Config' => $baseDir . '/Class/Animal/Config.php',
+    'App\\Animal\\Gu' => $baseDir . '/Class/Animal/Gu.php',
+    'App\\Config\\ItemTransaction' => $baseDir . '/Class/Config/ItemTransaction.php',
+    'App\\Config\\MoneyTransaction' => $baseDir . '/Class/Config/MoneyTransaction.php',
     'App\\Config\\ShopTransaction' => $baseDir . '/Class/Config/ShopTransaction.php',
+    'App\\Config\\User' => $baseDir . '/Class/Config/User.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

@@ -21,7 +21,13 @@ class ComposerStaticInitdd4b2ef4614ab97493b017576858b6af
     );
 
     public static $classMap = array (
+        'App\\Animal\\Animal' => __DIR__ . '/../..' . '/Class/Animal/Animal.php',
+        'App\\Animal\\Config' => __DIR__ . '/../..' . '/Class/Animal/Config.php',
+        'App\\Animal\\Gu' => __DIR__ . '/../..' . '/Class/Animal/Gu.php',
+        'App\\Config\\ItemTransaction' => __DIR__ . '/../..' . '/Class/Config/ItemTransaction.php',
+        'App\\Config\\MoneyTransaction' => __DIR__ . '/../..' . '/Class/Config/MoneyTransaction.php',
         'App\\Config\\ShopTransaction' => __DIR__ . '/../..' . '/Class/Config/ShopTransaction.php',
+        'App\\Config\\User' => __DIR__ . '/../..' . '/Class/Config/User.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

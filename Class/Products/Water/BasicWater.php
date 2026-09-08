@@ -25,5 +25,6 @@ class BasicWater extends ShopTransaction
     {
         $this->animal->eat();
         $this->animal->drink();
+        // effect
     }
 }
