@@ -6,18 +6,24 @@
     <title>PooPet</title>
 </head>
 <body>
+
     <h1>
         Seja bem vindo ao Poopet, por favor faça login.
     </h1>
 
     <form action="" method="post">
+
         <label>
         Nome de usuario:
         </label>
-        <input type="text" name="nickname">
-        
+        <input type="text" name="nickname" required>
+
         <button type="submit">Confirmar</button>
         <input type="reset" value="Cancelar">
+
     </form>
+
+    <p> Não tem conta? Registre-se </p>
+
 </body>
 </html>

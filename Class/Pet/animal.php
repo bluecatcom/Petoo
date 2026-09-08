@@ -1,9 +1,11 @@
 <?php
 
-namespace Animal;
+namespace App\Animal;
 
 abstract class Animal
 {
+    use Config;
+
     // Basic info
     protected string $name;
     protected int $age;
@@ -54,6 +56,29 @@ abstract class Animal
         'State' => $this->state,
         'Happy' => $this->hapiness
         ];
+    }
+    public function setNeeds(string $need, $new): void
+    {
+        switch ($need) {
+            case 'Name':
+                $this->name = $new;
+                break;
+            case 'Age':
+                $this->age = $new;
+                break;
+            case 'Eyes':
+                $this->eyes = $new;
+                break;
+            case 'Body':
+                $this->body = $new;
+                break;
+            case 'Ears':
+                $this->ears = $new;
+                break;
+            default:
+                return;
+                break;
+        }
     }
     // Hunger
     public function getHunger(): int

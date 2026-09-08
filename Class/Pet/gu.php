@@ -1,6 +1,6 @@
 <?php
 
-namespace Animal;
+namespace App\Animal;
 
 class Gu extends Animal
 {
