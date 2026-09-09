@@ -2,7 +2,7 @@
 
 namespace App\Animal;
 
-class Gu extends Animal
+class Dokkaebi extends Animal
 {
     // Metodos: getNeeds (Name, Age, Eyes, Body, Ears, Hunger, Thirst, Sleep,
     // HungerRate, ThirstRate, SleepRate, SicknessRate, State, Happy)

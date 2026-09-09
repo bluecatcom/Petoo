@@ -25,5 +25,7 @@
 
     <p> Não tem conta? Registre-se </p>
 
+    <header: "Location: "game.php"> </header>
+
 </body>
 </html>

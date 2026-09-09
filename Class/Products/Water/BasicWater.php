@@ -18,13 +18,12 @@ class BasicWater extends ShopTransaction
         Animal $animal
     ) {
         parent::__construct($item, $money);
-
         $this->animal = $animal;
     }
     public function effect(): void
     {
-        $this->animal->eat();
-        $this->animal->drink();
-        // effect
+        $this->animal->addHunger(0);
+        $this->animal->addThirst(15);
+        // effect: $this->animal->setState("Neutro")
     }
 }

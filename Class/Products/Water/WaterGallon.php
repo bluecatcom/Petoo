@@ -9,7 +9,7 @@ use App\Animal\Animal;
 
 class WaterGallon extends ShopTransaction
 {
-    protected float $price = 15;
+    protected float $price = 40;
     protected string $name = "watergallon";
     private Animal $animal;
     public function __construct(
@@ -18,13 +18,12 @@ class WaterGallon extends ShopTransaction
         Animal $animal
     ) {
         parent::__construct($item, $money);
-
         $this->animal = $animal;
     }
     public function effect(): void
     {
-        $this->animal->eat();
-        $this->animal->drink();
-        // effect
+        $this->animal->addHunger(0);
+        $this->animal->addThirst(40);
+        // effect: $this->animal->setState("Saciado")
     }
 }
