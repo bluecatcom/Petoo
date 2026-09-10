@@ -2,31 +2,40 @@
 
 namespace App\Animal;
 
+// use App\Animal\Config;
+
 abstract class Animal
 {
-    use Config;
+    // use Config;
 
     // Basic info
     protected string $name;
-    protected int $age;
+    protected float $age;
+
     // Aparence
     protected string $eyes;
     protected string $body;
     protected string $ears;
+
     // Necessity
     protected int $hunger;
     protected int $thirst;
     protected int $sleep;
+
     // Taxas
     protected int $hungerRate;
     protected int $thirstRate;
     protected int $sleepRate;
     protected int $sicknessRate;
+
     // state
     protected string $state;
-    protected float $hapiness;
+    protected float $happiness;
+
     public function __construct()
     {
+        echo "ANIMAL CONSTRUCT EXECUTOU<br>";
+        $this->setAge(0.1);
         $this->setHunger(100);
         $this->setThirst(100);
         $this->setSleep(100);
@@ -36,27 +45,12 @@ abstract class Animal
         $this->setSickRate(5);
         $this->setHappy(0.1);
         $this->setState("Born");
+        $this->setEyes("preto");
+        $this->setBody("branco");
+        $this->setEars("padrao1");
     }
+
     // Basic Functions
-    public function getNeeds(): array
-    {
-        return [
-        'Name' => $this->name,
-        'Age' => $this->age,
-        'Eyes' => $this->eyes,
-        'Body' => $this->body,
-        'Ears' => $this->ears,
-        'Hunger' => $this->hunger,
-        'Thirst' => $this->thirst,
-        'Sleep' => $this->sleep,
-        'HungerRate' => $this->hungerRate,
-        'ThirstRate' => $this->thirstRate,
-        'SleepRate' => $this->sleepRate,
-        'SicknessRate' => $this->sicknessRate,
-        'State' => $this->state,
-        'Happy' => $this->hapiness
-        ];
-    }
     public function setNeeds(string $need, $new): void
     {
         switch ($need) {
@@ -80,6 +74,7 @@ abstract class Animal
                 break;
         }
     }
+
     // Hunger
     public function getHunger(): int
     {
@@ -97,6 +92,7 @@ abstract class Animal
     {
         $this->hunger = max(0, $this->hunger - $value);
     }
+
     // Thirst
     public function getThirst(): int
     {
@@ -114,6 +110,7 @@ abstract class Animal
     {
         $this->thirst = max(0, $this->thirst - $value);
     }
+
     // Sleep
     public function getSleep(): int
     {
@@ -131,14 +128,15 @@ abstract class Animal
     {
         $this->sleep = max(0, $this->sleep - $value);
     }
+
     // Hapiness
     public function getHappy(): float
     {
         return $this->happiness;
     }
-    public function setHappy(int $value): void
+    public function setHappy(float $value): void
     {
-        $this->happiness = min(150, max(0, $value));
+        $this->happiness = min(5, max(0, $value));
     }
     public function addHappy(int $value): void
     {
@@ -148,6 +146,7 @@ abstract class Animal
     {
         $this->happiness = max(0, $this->happiness - $value);
     }
+
     // States
     public function getState(): string
     {
@@ -157,7 +156,9 @@ abstract class Animal
     {
         $this->state = $state;
     }
+
     // Advanced Functions
+
     // Rates
     public function setHungerRate(int $value): void
     {
@@ -175,11 +176,111 @@ abstract class Animal
     {
         $this->sicknessRate = max(0, min(5, $value));
     }
+
     // Ticks
     public function updateNeeds(): void
     {
         $this->removeHunger($this->hungerRate);
         $this->removeThirst($this->thirstRate);
         $this->removeSleep($this->sleepRate);
+    }
+
+    // Apparence
+
+    protected array $eyesList = [
+    'preto',
+    'azul',
+    'vermelho',
+    'verde',
+    'gold',
+    'rainbow'
+    ];
+
+    protected array $bodyList = [
+    'branco',
+    'preto',
+    'azul',
+    'vermelho',
+    'roxo',
+    'amarelo',
+    'marrom',
+    'rosa',
+    'laranja',
+    'verde',
+    'gold',
+    'rainbow',
+    'water',
+    'cloud',
+    'robot',
+    'raccon'
+    ];
+
+    protected array $earsList = [
+    'padrao1',
+    'padrao2',
+    'padrao3',
+    'padrao4',
+    'coelho',
+    'gato',
+    'urso',
+    'robot',
+    'water',
+    'gold',
+    'rainbow'
+    ];
+
+    public function setName(string $fun): void
+    {
+        $this->name = $fun;
+    }
+
+    public function setAge(float $fun): void
+    {
+        $this->age = $fun;
+    }
+
+    public function addAge(float $fun): void
+    {
+        $this->age += $fun;
+    }
+
+    public function setEyes(string $fun): void
+    {
+            $this->eyes = $fun;
+    }
+
+    public function setBody(string $fun): void
+    {
+            $this->body = $fun;
+    }
+
+    public function setEars(string $fun): void
+    {
+            $this->ears = $fun;
+    }
+
+    public function getNeeds(): array
+    {
+        return [
+        'Name' => $this->name,
+        'Age' => $this->age,
+        'Eyes' => $this->eyes,
+        'Body' => $this->body,
+        'Ears' => $this->ears,
+        'Hunger' => $this->hunger,
+        'Thirst' => $this->thirst,
+        'Sleep' => $this->sleep,
+        'HungerRate' => $this->hungerRate,
+        'ThirstRate' => $this->thirstRate,
+        'SleepRate' => $this->sleepRate,
+        'SicknessRate' => $this->sicknessRate,
+        'State' => $this->state,
+        'Happy' => $this->happiness
+        ];
+    }
+
+    public function getAge(): float
+    {
+        return round($this->age, 1);
     }
 }
