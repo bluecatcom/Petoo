@@ -10,7 +10,9 @@ use App\Animal\Animal;
 class WaterGallon extends ShopTransaction
 {
     protected float $price = 40;
-    protected string $name = "watergallon";
+    protected string $name = "water-gallon";
+    private int $hunger = 0;
+    private int $thirst = 40;
     private Animal $animal;
     public function __construct(
         ItemTransaction $item,
@@ -22,8 +24,8 @@ class WaterGallon extends ShopTransaction
     }
     public function effect(): void
     {
-        $this->animal->addHunger(0);
-        $this->animal->addThirst(40);
-        // effect: $this->animal->setState("Saciado")
+        $this->animal->addHunger($this->hunger);
+        $this->animal->addThirst($this->thirst);
+        $this->animal->setState("Usou Water Gallon ...");
     }
 }

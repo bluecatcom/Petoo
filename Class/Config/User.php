@@ -14,7 +14,7 @@ class User
     {
         $this->item = $item;
         $this->money = $money;
-        $this->starterpack();
+        $this->giveStarterPack();
     }
     private function giveStarterPack()
     {

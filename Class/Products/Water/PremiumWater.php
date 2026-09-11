@@ -7,12 +7,12 @@ use App\Config\ItemTransaction;
 use App\Config\MoneyTransaction;
 use App\Animal\Animal;
 
-class BasicWater extends ShopTransaction
+class PremiumWater extends ShopTransaction
 {
-    protected float $price = 15;
-    protected string $name = "basic-water";
-    private int $hunger = 0;
-    private int $thirst = 15;
+    protected float $price = 100;
+    protected string $name = "premium-water";
+    private int $hunger = 15;
+    private int $thirst = 75;
     private Animal $animal;
     public function __construct(
         ItemTransaction $item,
@@ -26,6 +26,6 @@ class BasicWater extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Basic Water ...");
+        $this->animal->setState("Usou Premium Water ...");
     }
 }
