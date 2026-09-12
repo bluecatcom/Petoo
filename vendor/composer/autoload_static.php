@@ -21,6 +21,20 @@ class ComposerStaticInitdd4b2ef4614ab97493b017576858b6af
     );
 
     public static $classMap = array (
+        'App\\Animal\\Animal' => __DIR__ . '/../..' . '/Class/Animal/Animal.php',
+        'App\\Animal\\Dokkaebi' => __DIR__ . '/../..' . '/Class/Animal/Dokkaebi.php',
+        'App\\Config\\ItemTransaction' => __DIR__ . '/../..' . '/Class/Config/ItemTransaction.php',
+        'App\\Config\\MoneyTransaction' => __DIR__ . '/../..' . '/Class/Config/MoneyTransaction.php',
+        'App\\Config\\ShopTransaction' => __DIR__ . '/../..' . '/Class/Config/ShopTransaction.php',
+        'App\\Config\\User' => __DIR__ . '/../..' . '/Class/Config/User.php',
+        'App\\Products\\Feed\\AdvancedFeed' => __DIR__ . '/../..' . '/Class/Products/Feed/AdvancedFeed.php',
+        'App\\Products\\Feed\\BasicFeed' => __DIR__ . '/../..' . '/Class/Products/Feed/BasicFeed.php',
+        'App\\Products\\Feed\\MediumFeed' => __DIR__ . '/../..' . '/Class/Products/Feed/MediumFeed.php',
+        'App\\Products\\Feed\\PremiumFeed' => __DIR__ . '/../..' . '/Class/Products/Feed/PremiumFeed.php',
+        'App\\Products\\Feed\\SuperFeed' => __DIR__ . '/../..' . '/Class/Products/Feed/SuperFeed.php',
+        'App\\Products\\Water\\BasicWater' => __DIR__ . '/../..' . '/Class/Products/Water/BasicWater.php',
+        'App\\Products\\Water\\PremiumWater' => __DIR__ . '/../..' . '/Class/Products/Water/PremiumWater.php',
+        'App\\Products\\Water\\WaterGallon' => __DIR__ . '/../..' . '/Class/Products/Water/WaterGallon.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
     );
 

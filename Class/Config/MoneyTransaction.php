@@ -4,7 +4,7 @@ namespace App\Config;
 
 class MoneyTransaction
 {
-    private float $mooney;
+    private float $mooney = 0;
 
     public function __construct()
     {

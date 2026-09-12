@@ -6,5 +6,19 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Animal\\Animal' => $baseDir . '/Class/Animal/Animal.php',
+    'App\\Animal\\Dokkaebi' => $baseDir . '/Class/Animal/Dokkaebi.php',
+    'App\\Config\\ItemTransaction' => $baseDir . '/Class/Config/ItemTransaction.php',
+    'App\\Config\\MoneyTransaction' => $baseDir . '/Class/Config/MoneyTransaction.php',
+    'App\\Config\\ShopTransaction' => $baseDir . '/Class/Config/ShopTransaction.php',
+    'App\\Config\\User' => $baseDir . '/Class/Config/User.php',
+    'App\\Products\\Feed\\AdvancedFeed' => $baseDir . '/Class/Products/Feed/AdvancedFeed.php',
+    'App\\Products\\Feed\\BasicFeed' => $baseDir . '/Class/Products/Feed/BasicFeed.php',
+    'App\\Products\\Feed\\MediumFeed' => $baseDir . '/Class/Products/Feed/MediumFeed.php',
+    'App\\Products\\Feed\\PremiumFeed' => $baseDir . '/Class/Products/Feed/PremiumFeed.php',
+    'App\\Products\\Feed\\SuperFeed' => $baseDir . '/Class/Products/Feed/SuperFeed.php',
+    'App\\Products\\Water\\BasicWater' => $baseDir . '/Class/Products/Water/BasicWater.php',
+    'App\\Products\\Water\\PremiumWater' => $baseDir . '/Class/Products/Water/PremiumWater.php',
+    'App\\Products\\Water\\WaterGallon' => $baseDir . '/Class/Products/Water/WaterGallon.php',
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
 );

@@ -20,6 +20,10 @@ abstract class ShopTransaction
             $this->item->addItem($this->name);
         }
     }
+    public function getItemPrice(): float
+    {
+        return $this->price;
+    }
     public function use(): void
     {
         if ($this->item->muchItem($this->name) > 0) {

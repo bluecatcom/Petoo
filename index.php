@@ -7,18 +7,27 @@ use App\Config\ItemTransaction;
 use App\Config\MoneyTransaction;
 use App\Animal\Animal;
 use App\Animal\Dokkaebi;
-use App\Products\BasicWater;
-use App\Products\WaterGallon;
-use App\Products\PremiumWater;
-use App\Products\BasicFeed;
-use App\Products\MediumFeed;
-use App\Products\AdvancedFeed;
-use App\Products\SuperFeed;
-use App\Products\PremiumFeed;
+use App\Products\Water\BasicWater;
+use App\Products\Water\WaterGallon;
+use App\Products\Water\PremiumWater;
+use App\Products\Feed\BasicFeed;
+use App\Products\Feed\MediumFeed;
+use App\Products\Feed\AdvancedFeed;
+use App\Products\Feed\SuperFeed;
+use App\Products\Feed\PremiumFeed;
 
 require_once __DIR__ . '/vendor/autoload.php';
 
 session_start();
+
+//=================================================================
+// SESSÕES DE OBJETOS DO SISTEMA
+//=================================================================
+
+var_dump(class_exists(\App\Products\Water\WaterGallon::class));
+var_dump(class_exists(\App\Products\Water\BasicWater::class));
+var_dump(class_exists(\App\Products\Water\PremiumWater::class));
+
 
 if (!isset($_SESSION['user'])) {
     $_SESSION['user'] = new User();
@@ -49,7 +58,7 @@ $needs = $dokkaebi->getNeeds();
 // BASIC WATER
 //=================================================================
 if (!isset($_SESSION['basicwater'])) {
-    $_SESSION['basicwater'] = new BasicWater($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi'],);
+    $_SESSION['basicwater'] = new BasicWater($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $basicwater = $_SESSION['basicwater'];
 
@@ -57,7 +66,7 @@ $basicwater = $_SESSION['basicwater'];
 // WATER GALLON
 //=================================================================
 if (!isset($_SESSION['watergallon'])) {
-    $_SESSION['watergallon'] = new WaterGallon();
+    $_SESSION['watergallon'] = new WaterGallon($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $watergallon = $_SESSION['watergallon'];
 
@@ -65,7 +74,7 @@ $watergallon = $_SESSION['watergallon'];
 // PREMIUM WATER
 //=================================================================
 if (!isset($_SESSION['premiumwater'])) {
-    $_SESSION['premiumwater'] = new PremiumWater();
+    $_SESSION['premiumwater'] = new PremiumWater($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $premiumwater = $_SESSION['premiumwater'];
 
@@ -73,7 +82,7 @@ $premiumwater = $_SESSION['premiumwater'];
 // BASIC FEED
 //=================================================================
 if (!isset($_SESSION['basicfeed'])) {
-    $_SESSION['basicfeed'] = new BasicFeed();
+    $_SESSION['basicfeed'] = new BasicFeed($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $basicfeed = $_SESSION['basicfeed'];
 
@@ -81,7 +90,7 @@ $basicfeed = $_SESSION['basicfeed'];
 // MEDIUM FEED
 //=================================================================
 if (!isset($_SESSION['mediumfeed'])) {
-    $_SESSION['mediumfeed'] = new Mediumfeed();
+    $_SESSION['mediumfeed'] = new MediumFeed($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $mediumfeed = $_SESSION['mediumfeed'];
 
@@ -89,7 +98,7 @@ $mediumfeed = $_SESSION['mediumfeed'];
 // ADVANCED FEED
 //=================================================================
 if (!isset($_SESSION['advancedfeed'])) {
-    $_SESSION['advancedfeed'] = new AdvancedFeed();
+    $_SESSION['advancedfeed'] = new AdvancedFeed($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $advancedfeed = $_SESSION['advancedfeed'];
 
@@ -97,7 +106,7 @@ $advancedfeed = $_SESSION['advancedfeed'];
 // SUPER FEED
 //=================================================================
 if (!isset($_SESSION['superfeed'])) {
-    $_SESSION['superfeed'] = new SuperFeed();
+    $_SESSION['superfeed'] = new SuperFeed($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $superfeed = $_SESSION['superfeed'];
 
@@ -105,61 +114,119 @@ $superfeed = $_SESSION['superfeed'];
 // PREMIUM FEED
 //=================================================================
 if (!isset($_SESSION['premiumfeed'])) {
-    $_SESSION['premiumfeed'] = new PremiumFeed();
+    $_SESSION['premiumfeed'] = new PremiumFeed($_SESSION['inventory'], $_SESSION['mooney'], $_SESSION['dokkaebi']);
 }
 $premiumfeed = $_SESSION['premiumfeed'];
 
 
-$action = $_POST['action'] ?? null;
+//=================================================================
+// PROCESSAMENTO DE FORMULARIO
+//=================================================================
 
-if ($action === 'comer') {
-    $dokkaebi->addHunger(10);
-    $dokkaebi->setState("Comeu ...");
-} elseif ($action === 'beber') {
-    $dokkaebi->addThirst(10);
-    $dokkaebi->setState("Bebeu ...");
-} elseif ($action === 'dormir') {
-    $dokkaebi->addSleep(10);
-    $dokkaebi->setState("Dormiu ...");
-} elseif ($action === 'tempo') {
-}
-
+//=================================================================
+// SHOPPING
+//=================================================================
 $shopping = $_POST['shopping'] ?? null;
 
+//=================================================================
+// WATER
+//=================================================================
 if ($shopping === 'basicwater') {
-
+    try {
+        $basicwater->buy();
+    } catch (\Throwable $th) {
+        //throw $th;
+    }
 } elseif ($shopping === 'watergallon') {
-
+    if ($watergallon->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($watergallon->getItemPrice());
+        $inventory->addItem("water-gallon");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 } elseif ($shopping === 'premiumwater') {
-
+    if ($premiumwater->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($premiumwater->getItemPrice());
+        $inventory->addItem("premium-water");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 }
 
+//=================================================================
+// FEED
+//=================================================================
 if ($shopping === 'basicfeed') {
-
+    if ($basicfeed->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($basicfeed->getItemPrice());
+        $inventory->addItem("basic-feed");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 } elseif ($shopping === 'mediumfeed') {
-
+    if ($mediumfeed->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($mediumfeed->getItemPrice());
+        $inventory->addItem("medium-feed");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 } elseif ($shopping === 'advancedfeed') {
-
+    if ($advancedfeed->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($advancedfeed->getItemPrice());
+        $inventory->addItem("advanced-feed");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 } elseif ($shopping === 'superfeed') {
-
+    if ($superfeed->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($superfeed->getItemPrice());
+        $inventory->addItem("super-feed");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 } elseif ($shopping === 'premiumfeed') {
-
+    if ($premiumfeed->getItemPrice() <= $mooney->getMoney()) {
+        $mooney->removeMoney($premiumfeed->getItemPrice());
+        $inventory->addItem("premium-feed");
+    } else {
+        echo"You dont have Mooneys to buy that!";
+    }
 }
 
+//=================================================================
+// INVENTARIO
+//=================================================================
+
+$usodeitens = $_POST['Inventario'] ?? null;
+
+if ($usodeitens === 'basicwater') {
+    $basicwater->use();
+} elseif ($usodeitens === 'watergallon') {
+    $watergallon->use();
+} elseif ($usodeitens === 'premiumwater') {
+    $premiumwater->use();
+}
+
+if ($usodeitens === 'basicfeed') {
+    $basicfeed->use();
+} elseif ($usodeitens === 'mediumfeed') {
+    $mediumfeed->use();
+} elseif ($usodeitens === 'advancedfeed') {
+    $advancedfeed->use();
+} elseif ($usodeitens === 'superfeed') {
+    $superfeed->use();
+} elseif ($usodeitens === 'premiumfeed') {
+    $premiumfeed->use();
+}
+
+//=================================================================
+// STRESS TEST
+//=================================================================
 $stresstest = $_POST['stresstest'] ?? null;
-
 if ($stresstest === 'sesh') {
-
+    echo"Esse botão n faz nada";
 } elseif ($stresstest === 'dinheiro') {
-
-}
-
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $_SESSION['animals'][] = $dokkaebi;
-    header('Location: ' . $_SERVER['PHP_SELF']);
-    exit;
+    $mooney->addMoney(50);
 }
 
 ?>
@@ -177,54 +244,55 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     =================================================================
     JAVAScript 
     =================================================================
-    -->
+    
     <script>
         setInterval(() => {
             fetch("/Game/Gametick.php")
         }, 500);
     </script>
-
+    -->
     <!-- 
     =================================================================
     INVENTORY
     =================================================================
     -->
+    <form method="post">
     <div class="inventory">
     <div class="water">
 
     <?php if (false !== $inventory->hasItem("basic-water")) : ?>
-        <button>use Basic water</button>
+        <button type="submit" name="Inventario" value="basicwater">use Basic water</button>
     <?php endif; ?>
 
     <?php if (false !== $inventory->hasItem("water-gallon")) : ?>
-        <button>use Water gallon</button>
+        <button type="submit" name="Inventario" value="watergallon">use Water gallon</button>
     <?php endif; ?>
 
     <?php if (false !== $inventory->hasItem("premium-water")) : ?>
-        <button>Use Premium water</button>
+        <button type="submit" name="Inventario" value="premiumwater">Use Premium water</button>
     <?php endif; ?>
 
     </div>
     <div class="feed">
 
     <?php if (false !== $inventory->hasItem("basic-feed")) : ?>
-        <button>use Basic feed</button>
+        <button type="submit" name="Inventario" value="basicfeed">use Basic feed</button>
     <?php endif; ?>
 
     <?php if (false !== $inventory->hasItem("medium-feed")) : ?>
-        <button>use Medium feed</button>
+        <button type="submit" name="Inventario" value="mediumfeed">use Medium feed</button>
     <?php endif; ?>
 
     <?php if (false !== $inventory->hasItem("advanced-feed")) : ?>
-        <button>use Advanced feed</button>
+        <button type="submit" name="Inventario" value="advancedfeed">use Advanced feed</button>
     <?php endif; ?>
 
     <?php if (false !== $inventory->hasItem("super-feed")) : ?>
-        <button>use Super feed</button>
+        <button type="submit" name="Inventario" value="superfeed">use Super feed</button>
     <?php endif; ?>
 
     <?php if (false !== $inventory->hasItem("premium-feed")) : ?>
-        <button>use Premium feed</button>
+        <button type="submit" name="Inventario" value="premiumfeed">use Premium feed</button>
     <?php endif; ?>
 
     </div>
@@ -235,6 +303,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     </div>
     </div>
+    </form>
 
     <!-- 
     =================================================================
@@ -314,11 +383,78 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </button>
         
         <button type="submit" name="stresstest" value="dinheiro">
-            Quer dinheiro? ent toma 50 reais meu fi ...
+            50 reais ...
         </button>
 
     </div>
     </form>
+
+    <form>
+    <div class="Status">
+
+
+        <h2> USER </h2>
+
+    <div class="Usuario">
+
+        <label>
+            Dinheiro
+        </label>
+        <?= $mooney->getMoney(); ?> <br> </br>
+
+        <label>
+            Inventario
+        </label>
+        <?php print_r($inventory->getItens()); ?> <br> </br>
+
+    </div>
+    <div class="Pet">
+
+        <h2> PET </h2>
+
+        <label>
+            Nome
+        </label>
+        <?= $dokkaebi->getName(); ?> <br> </br>
+
+        <label>
+            Idade
+        </label>
+        <?= $dokkaebi->getAge(); ?> <br> </br>
+
+        <label>
+            Hunger
+        </label>
+        <?= $dokkaebi->getHunger(); ?> <br> </br>
+
+        <label>
+            Thirst
+        </label>
+        <?= $dokkaebi->getThirst(); ?> <br> </br>
+
+        <label>
+            Sleep
+        </label>
+        <?= $dokkaebi->getSleep(); ?> <br> </br>
+
+        <label>
+            estado
+        </label>
+        <?= $dokkaebi->getState(); ?> <br> </br>
+
+        <label>
+            Felicidade
+        </label>
+        <?= $dokkaebi->getHappy(); ?> <br> </br>
+
+    </div>
+    <div class="sla">
+
+    </div>
+
+    </div>
+    </form>
+    
 
 </body>
 </html>

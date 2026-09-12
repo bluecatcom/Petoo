@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Products;
+namespace App\Products\Feed;
 
 use App\Config\ShopTransaction;
 use App\Config\ItemTransaction;
