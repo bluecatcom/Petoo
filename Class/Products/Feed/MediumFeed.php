@@ -5,7 +5,7 @@ namespace App\Products;
 use App\Config\ShopTransaction;
 use App\Config\ItemTransaction;
 use App\Config\MoneyTransaction;
-use App\Animal\Animal;
+use App\Animal\Dokkaebi;
 
 class MediumFeed extends ShopTransaction
 {
@@ -13,11 +13,11 @@ class MediumFeed extends ShopTransaction
     protected string $name = "medium-feed";
     private int $hunger = 20;
     private int $thirst = 0;
-    private Animal $animal;
+    private Dokkaebi $animal;
     public function __construct(
         ItemTransaction $item,
         MoneyTransaction $money,
-        Animal $animal
+        Dokkaebi $animal
     ) {
         parent::__construct($item, $money);
         $this->animal = $animal;

@@ -4,12 +4,6 @@ namespace App\Game;
 
 require_once 'vendor/autoload.php';
 
-use App\Config\Session;
-
-if (!isset($_SESSION['sees'])) {
-    $_SESSION['sees'] = new Session();
-}
-
 use App\Animal\Animal;
 use App\Animal\Dokkaebi;
 use App\Animal\Config;
@@ -18,47 +12,46 @@ use App\Config\MoneyTransaction;
 use App\Config\ItemTransaction;
 use App\Config\ShopTransaction;
 use App\Products\BasicWater;
+use App\Config\ConfigAutoload;
+use App\Products\ProductsAutoload;
 
-if ($sees->has($dokkaebi)) {
-    $_SESSION['dokkaebi'] = new Dokkaebi();
+if (!isset($_SESSION['user'])) {
+    $_SESSION['user'] = new User();
 }
-
-
+if (!isset($_SESSION['mooney'])) {
+    $_SESSION['mooney'] = new MoneyTransaction($_SESSION['user']);
+}
+if (!isset($_SESSION['seesconfig'])) {
+    $_SESSION['seesconfig'] = new ConfigAutoload();
+}
+if (!isset($_SESSION['seesproduct'])) {
+    $_SESSION['seesproduct'] = new ProductsAutoload();
+}
 if (!isset($_SESSION['dokkaebi'])) {
     $_SESSION['dokkaebi'] = new Dokkaebi();
-    $dokkaebi->setName("DokkaebiBiyooTeste");
-}
-if (!isset($_SESSION['inv'])) {
-    $_SESSION['inv'] = new ItemTransaction();
-}
-if (!isset($_SESSION['inv'])) {
-    $_SESSION['inv'] = new ItemTransaction();
+    $_SESSION['dokkaebi']->setName("DokkaebiBiyooTeste");
 }
 
 $dokkaebi = $_SESSION['dokkaebi'];
 $inv = $_SESSION['inv'];
-
 $needs = $dokkaebi->getNeeds();
 
-$alimentacao = $_POST['alimentacao'] ?? false;
+$action = $_POST['action'] ?? null;
 
-if ($alimentacao === 'comer') {
+if ($action === 'comer') {
     $dokkaebi->addHunger(10);
     $dokkaebi->setState("Comeu ...");
-} elseif ($alimentacao === 'beber') {
+} elseif ($action === 'beber') {
     $dokkaebi->addThirst(10);
     $dokkaebi->setState("Bebeu ...");
-} elseif ($alimentacao === 'dormir') {
+} elseif ($action === 'dormir') {
     $dokkaebi->addSleep(10);
     $dokkaebi->setState("Dormiu ...");
-} elseif ($alimentacao === 'tempo') {
-    $dokkaebi->updateNeeds();
-    $dokkaebi->addAge(0.01);
-    $dokkaebi->setState("Envelheceu ...");
+} elseif ($action === 'tempo') {
 }
 
-if (isset($alimentacao)) {
-    $alimentacao = "sesh";
+if (isset($action)) {
+    $action = "sesh";
 }
 
 $status = $_POST['status'] ?? false;
@@ -79,6 +72,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title>My little Dokkaebi</title>
 </head>
 <body>
+
+    <!-- 
+    =================================================================
+    JAVAScript 
+    =================================================================
+    -->
+    <script>
+        setInterval(() => {
+            fetch("Gametick.php")
+        }, 500);
+    </script>
 
     <!-- 
     =================================================================

@@ -5,7 +5,7 @@ namespace App\Products;
 use App\Config\ShopTransaction;
 use App\Config\ItemTransaction;
 use App\Config\MoneyTransaction;
-use App\Animal\Animal;
+use App\Animal\Dokkaebi;
 
 class WaterGallon extends ShopTransaction
 {
@@ -13,11 +13,11 @@ class WaterGallon extends ShopTransaction
     protected string $name = "water-gallon";
     private int $hunger = 0;
     private int $thirst = 40;
-    private Animal $animal;
+    private Dokkaebi $animal;
     public function __construct(
         ItemTransaction $item,
         MoneyTransaction $money,
-        Animal $animal
+        Dokkaebi $animal
     ) {
         parent::__construct($item, $money);
         $this->animal = $animal;

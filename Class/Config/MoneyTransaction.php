@@ -4,23 +4,28 @@ namespace App\Config;
 
 class MoneyTransaction
 {
-    private User $user;
-    public function __construct(User $user)
+    private float $mooney;
+
+    public function __construct()
     {
-        $this->user = $user;
+        #
     }
+
+    // ADD MONEY
     public function addMoney(int $value): void
     {
-        $this->user->mooney += $value;
+        $this->mooney += $value;
     }
+
     // REMOVE MONEY
     public function removeMoney(int $value): void
     {
-        $this->user->mooney -= $value;
+        $this->mooney -= $value;
     }
+
     // VIEW MONEY
     public function getMoney(): int
     {
-        return $this->user->mooney;
+        return $this->mooney;
     }
 }

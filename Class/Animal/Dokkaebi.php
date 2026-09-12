@@ -10,13 +10,27 @@ class Dokkaebi extends Animal
         parent::__construct();
     }
 
-    /*
-    Metodos: getNeeds (Name, Age, Eyes, Body, Ears, Hunger, Thirst, Sleep,
-    Metodos: updateNeeds (HungerRate, ThirstRate, SleepRate, SicknessRate, State, Happy)
-    Metodos: getHunger, setHunger addHunger, removeHunger
-    Metodos: getThirst, setThirst, addThirst, removeThirst
-    Metodos: getSleep, setSleep, addSleep, removeSleep
-    Metodos: getHappy, setHappy, addHappy, removeHappy
-    Metodos: getState, setState, setHungerRate, setThirstRate, setSleepRate, setSickRate
-    */
+    // Basic info
+    protected string $name;
+    protected float $age;
+
+    // Aparence
+    protected string $eyes;
+    protected string $body;
+    protected string $ears;
+
+    // Necessity
+    protected int $hunger;
+    protected int $thirst;
+    protected int $sleep;
+
+    // Rates
+    protected int $hungerRate;
+    protected int $thirstRate;
+    protected int $sleepRate;
+    protected int $sickRate;
+
+    // state
+    protected string $state;
+    protected float $happiness;
 }
