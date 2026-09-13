@@ -26,6 +26,6 @@ class BasicFeed extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Basic Feed ...");
+        $this->animal->setState("Used Basic Feed ...");
     }
 }

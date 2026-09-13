@@ -2,11 +2,14 @@
 
 namespace App\Game;
 
-require_once 'vendor/autoload.php';
-
-session_start();
+require_once __DIR__ . '../../../vendor/autoload.php';
 
 use App\Animal\Dokkaebi;
+use App\Config\MoneyTransaction;
+
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['dokkaebi'])) {
     $_SESSION['dokkaebi'] = new Dokkaebi();
@@ -14,6 +17,20 @@ if (!isset($_SESSION['dokkaebi'])) {
 }
 $dokkaebi = $_SESSION['dokkaebi'];
 
+if (!isset($_SESSION['mooney'])) {
+    $_SESSION['mooney'] = new MoneyTransaction();
+}
+$mooney = $_SESSION['mooney'];
+
 $dokkaebi->updateNeeds();
 $dokkaebi->addAge(0.01);
-$dokkaebi->setState("Envelheceu ...");
+$dokkaebi->setState("aging ...");
+
+echo json_encode([
+'mooney' => $mooney->getMoney(),
+'age' => $dokkaebi->getAge(),
+'hunger' => $dokkaebi->getHunger(),
+'thirst' => $dokkaebi->getThirst(),
+'sleep' => $dokkaebi->getSleep(),
+'state' => $dokkaebi->getState()
+]);

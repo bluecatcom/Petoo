@@ -26,6 +26,6 @@ class PremiumFeed extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Premium Feed ...");
+        $this->animal->setState("Used Premium Feed ...");
     }
 }

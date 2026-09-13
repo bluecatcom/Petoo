@@ -36,4 +36,11 @@ class ItemTransaction
     {
         return $this->items[$item] ?? 0;
     }
+
+    public function removeAllItens(): void
+    {
+        foreach ($this->getItens() as $itens) {
+            $this->removeItem($item);
+        }
+    }
 }

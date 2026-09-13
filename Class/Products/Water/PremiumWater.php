@@ -26,6 +26,6 @@ class PremiumWater extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Premium Water ...");
+        $this->animal->setState("Used Premium Water ...");
     }
 }

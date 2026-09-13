@@ -26,6 +26,6 @@ class AdvancedFeed extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Advanced Feed ...");
+        $this->animal->setState("Used Advanced Feed ...");
     }
 }

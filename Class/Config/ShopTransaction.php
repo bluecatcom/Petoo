@@ -26,7 +26,7 @@ abstract class ShopTransaction
     }
     public function use(): void
     {
-        if ($this->item->muchItem($this->name) > 0) {
+        if ($this->item->hasItem($this->name)) {
             $this->item->removeItem($this->name);
             $this->effect();
         }

@@ -26,6 +26,6 @@ class MediumFeed extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Medium Feed ...");
+        $this->animal->setState("Used Medium Feed ...");
     }
 }

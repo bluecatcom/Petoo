@@ -26,6 +26,6 @@ class WaterGallon extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Water Gallon ...");
+        $this->animal->setState("Used Water Gallon ...");
     }
 }

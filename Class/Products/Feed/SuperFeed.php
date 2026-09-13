@@ -26,6 +26,6 @@ class SuperFeed extends ShopTransaction
     {
         $this->animal->addHunger($this->hunger);
         $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Usou Super Feed ...");
+        $this->animal->setState("Used Super Feed ...");
     }
 }
