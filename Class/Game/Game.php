@@ -8,10 +8,21 @@ use App\Config\MoneyTransaction;
 use App\Animal\Dokkaebi;
 
 require_once __DIR__ . '/bootstrap.php';
+
+$dokkaebiName = $_POST['dokkaebiName'] ?? '';
+
+if (!isset($_SESSION['dokkaebiName'])) {
+    $_SESSION['dokkaebiName'] = $dokkaebiName;
+}
+
 require_once __DIR__ . '/GameCLI/GameDokkaebi.php';
 
 $gui = $_POST['GUI'] ?? '';
 $_SESSION['GUI'] = $_POST['GUI'] ?? '';
+
+if (!isset($_SESSION['GUI'])) {
+    $_SESSION['GUI'] = $gui;
+}
 
 if ($gui == '') {
     $gui = $_SESSION['GUI'];

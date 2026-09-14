@@ -31,5 +31,3 @@ $biyoo = $_SESSION['dokkaebi'];
 $user = $_SESSION['user'];
 $moomins = $_SESSION['moomins'];
 $inventory = $_SESSION['inventory'];
-
-$needs = $biyoo->getNeeds();

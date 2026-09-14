@@ -6,8 +6,12 @@ require_once __DIR__ . '/bootstrap.php';
 
 $gui = $_POST['GUI'] ?? '';
 
+if (!isset($_SESSION['GUI'])) {
+    $_SESSION['GUI'] = $gui;
+}
+
 if ($gui == "user") {
-    require_once __DIR__ . '/GameCLI/GameUser-Inventory.php'; 
+    require_once __DIR__ . '/GameCLI/GameUser-Inventory.php';
 }
 if ($gui == "shop") {
     require_once __DIR__ . '/GameCLI/GameShop.php';

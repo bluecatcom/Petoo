@@ -12,8 +12,14 @@ require_once __DIR__ . '/../bootstrap.php';
 
 if (!isset($_SESSION['dokkaebi'])) {
     $_SESSION['dokkaebi'] = new Dokkaebi();
-    $_SESSION['dokkaebi']->setName("Biyoo");
 }
+
+if (!isset($_SESSION['dokkaebiName'])) {
+    $_SESSION['dokkaebiName'];
+}
+
+
+$_SESSION['dokkaebi']->setName($_SESSION['dokkaebiName']);
 
 $biyoo = $_SESSION['dokkaebi'];
 

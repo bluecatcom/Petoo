@@ -10,4 +10,14 @@ class User
     {
         #
     }
+
+    public function setName(string $fun): void
+    {
+        $this->name = $fun;
+    }
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
 }
