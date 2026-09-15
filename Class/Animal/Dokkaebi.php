@@ -33,4 +33,9 @@ class Dokkaebi extends Animal
     // state
     protected string $state;
     protected float $happiness;
+
+    public function dormir()
+    {
+        # aumentar o sono de acordo com a qualiadde da cama e deixar ele imobilizado enquanto dorme
+    }
 }
