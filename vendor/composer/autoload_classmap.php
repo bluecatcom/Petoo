@@ -7,7 +7,10 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'App\\Animal\\Animal' => $baseDir . '/Class/Animal/Animal.php',
+    'App\\Animal\\Config' => $baseDir . '/Class/Animal/Config.php',
     'App\\Animal\\Dokkaebi' => $baseDir . '/Class/Animal/Dokkaebi.php',
+    'App\\Animal\\Essentials\\Bowl' => $baseDir . '/Class/Animal/Essentials/Bowl.php',
+    'App\\Animal\\Essentials\\Essentials' => $baseDir . '/Class/Animal/Essentials/Essentials.php',
     'App\\Config\\ItemTransaction' => $baseDir . '/Class/Config/ItemTransaction.php',
     'App\\Config\\MoneyTransaction' => $baseDir . '/Class/Config/MoneyTransaction.php',
     'App\\Config\\ShopTransaction' => $baseDir . '/Class/Config/ShopTransaction.php',

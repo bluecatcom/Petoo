@@ -28,18 +28,81 @@ $shopping = $_POST['shopping'] ?? null;
 
 if ($shopping === 'basic-water') {
     if ($moomins->getMoney() >= $basicwater->getItemPrice()) {
-        $inventory->addItem($shopping);
+        $inventory->addItem('basic-water');
         $moomins->removeMoney($basicwater->getItemPrice());
     }
-} elseif ($shopping === 'water-gallon') {
+} if ($shopping === 'basic-water5') {
+    if ($moomins->getMoney() >= ($basicwater->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('basic-water');
+            $a++;
+        }
+        $moomins->removeMoney($basicwater->getItemPrice() * 5);
+    }
+} if ($shopping === 'basic-water10') {
+    if ($moomins->getMoney() >= ($basicwater->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('basic-water');
+            $a++;
+        }
+        $moomins->removeMoney($basicwater->getItemPrice() * 10);
+    }
+}
+
+if ($shopping === 'water-gallon') {
     if ($moomins->getMoney() >= $watergallon->getItemPrice()) {
-        $inventory->addItem($shopping);
+        $inventory->addItem('water-gallon');
         $moomins->removeMoney($watergallon->getItemPrice());
     }
-} elseif ($shopping === 'premium-water') {
+}
+if ($shopping === 'water-gallon5') {
+    if ($moomins->getMoney() >= ($watergallon->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('water-gallon');
+            $a++;
+        }
+        $moomins->removeMoney($watergallon->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'water-gallon10') {
+    if ($moomins->getMoney() >= ($watergallon->getItemPrice() * 10)) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('water-gallon');
+            $a++;
+        }
+        $moomins->removeMoney($watergallon->getItemPrice() * 10);
+    }
+}
+
+
+if ($shopping === 'premium-water') {
     if ($moomins->getMoney() >= $premiumwater->getItemPrice()) {
         $inventory->addItem($shopping);
         $moomins->removeMoney($premiumwater->getItemPrice());
+    }
+}
+if ($shopping === 'premium-water5') {
+    if ($moomins->getMoney() >= ($premiumwater->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('premium-water');
+            $a++;
+        }
+        $moomins->removeMoney($premiumwater->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'premium-water10') {
+    if ($moomins->getMoney() >= ($premiumwater->getItemPrice() * 10)) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('premium-water');
+            $a++;
+        }
+        $moomins->removeMoney($premiumwater->getItemPrice() * 10);
     }
 }
 
@@ -52,28 +115,135 @@ if ($shopping === 'basic-feed') {
         $inventory->addItem($shopping);
         $moomins->removeMoney($basicfeed->getItemPrice());
     }
-} elseif ($shopping === 'medium-feed') {
+}
+if ($shopping === 'basic-feed5') {
+    if ($moomins->getMoney() >= ($basicfeed->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('basic-feed');
+            $a++;
+        }
+        $moomins->removeMoney($basicfeed->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'basic-feed10') {
+    if ($moomins->getMoney() >= $basicfeed->getItemPrice() * 10) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('basic-feed');
+            $a++;
+        }
+        $moomins->removeMoney($basicfeed->getItemPrice() * 10);
+    }
+}
+
+if ($shopping === 'medium-feed') {
     if ($moomins->getMoney() >= $mediumfeed->getItemPrice()) {
         $inventory->addItem($shopping);
         $moomins->removeMoney($mediumfeed->getItemPrice());
     }
-} elseif ($shopping === 'advanced-feed') {
+}
+if ($shopping === 'medium-feed5') {
+    if ($moomins->getMoney() >= ($mediumfeed->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('medium-feed');
+            $a++;
+        }
+        $moomins->removeMoney($mediumfeed->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'medium-feed10') {
+    if ($moomins->getMoney() >= $mediumfeed->getItemPrice() * 10) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('medium-feed');
+            $a++;
+        }
+        $moomins->removeMoney($mediumfeed->getItemPrice() * 10);
+    }
+}
+
+if ($shopping === 'advanced-feed') {
     if ($moomins->getMoney() >= $advancedfeed->getItemPrice()) {
         $inventory->addItem($shopping);
         $moomins->removeMoney($advancedfeed->getItemPrice());
     }
-} elseif ($shopping === 'super-feed') {
+}
+if ($shopping === 'advanced-feed5') {
+    if ($moomins->getMoney() >= ($advancedfeed->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('advanced-feed');
+            $a++;
+        }
+        $moomins->removeMoney($advancedfeed->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'advanced-feed10') {
+    if ($moomins->getMoney() >= $advancedfeed->getItemPrice() * 10) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('advanced-feed');
+            $a++;
+        }
+        $moomins->removeMoney($advancedfeed->getItemPrice() * 10);
+    }
+}
+
+if ($shopping === 'super-feed') {
     if ($moomins->getMoney() >= $superfeed->getItemPrice()) {
         $inventory->addItem($shopping);
         $moomins->removeMoney($superfeed->getItemPrice());
     }
-} elseif ($shopping === 'premium-feed') {
-    if ($moomins->getMoney() >= $premiumfeed->getItemPrice()) {
-        $inventory->addItem($shopping);
-        $moomins->removeMoney($watergallon->getItemPrice());
+}
+if ($shopping === 'super-feed5') {
+    if ($moomins->getMoney() >= ($superfeed->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('super-feed');
+            $a++;
+        }
+        $moomins->removeMoney($superfeed->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'super-feed10') {
+    if ($moomins->getMoney() >= $superfeed->getItemPrice() * 10) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('super-feed');
+            $a++;
+        }
+        $moomins->removeMoney($superfeed->getItemPrice() * 10);
     }
 }
 
+if ($shopping === 'premium-feed') {
+    if ($moomins->getMoney() >= $premiumfeed->getItemPrice()) {
+        $inventory->addItem($shopping);
+        $moomins->removeMoney($premiumfeed->getItemPrice());
+    }
+}
+if ($shopping === 'premium-feed5') {
+    if ($moomins->getMoney() >= ($premiumfeed->getItemPrice() * 5)) {
+        $a = 0;
+        while ($a != 5) {
+            $inventory->addItem('premium-feed');
+            $a++;
+        }
+        $moomins->removeMoney($premiumfeed->getItemPrice() * 5);
+    }
+}
+if ($shopping === 'premium-feed10') {
+    if ($moomins->getMoney() >= $premiumfeed->getItemPrice() * 10) {
+        $a = 0;
+        while ($a != 10) {
+            $inventory->addItem('premium-feed');
+            $a++;
+        }
+        $moomins->removeMoney($premiumfeed->getItemPrice() * 10);
+    }
+}
 //=================================================================
 // INVENTORY
 //=================================================================

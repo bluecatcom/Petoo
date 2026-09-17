@@ -5,7 +5,7 @@ namespace App\Products\Water;
 use App\Config\ShopTransaction;
 use App\Config\ItemTransaction;
 use App\Config\MoneyTransaction;
-use App\Animal\Dokkaebi;
+use App\Animal\Essentials\Essentials;
 
 class WaterGallon extends ShopTransaction
 {
@@ -13,19 +13,18 @@ class WaterGallon extends ShopTransaction
     protected string $name = "water-gallon";
     private int $hunger = 0;
     private int $thirst = 40;
-    private Dokkaebi $animal;
+    private Essentials $essentials;
     public function __construct(
         ItemTransaction $item,
         MoneyTransaction $money,
-        Dokkaebi $animal
+        Essentials $essentials
     ) {
         parent::__construct($item, $money);
-        $this->animal = $animal;
+        $this->essentials = $essentials;
     }
     public function effect(): void
     {
-        $this->animal->addHunger($this->hunger);
-        $this->animal->addThirst($this->thirst);
-        $this->animal->setState("Used Water Gallon ...");
+        $this->essentials->addFeedFill($this->hunger);
+        $this->essentials->addWaterFill($this->thirst);
     }
 }

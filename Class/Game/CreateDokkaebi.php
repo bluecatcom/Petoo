@@ -10,11 +10,12 @@ if (!isset($_SESSION['user'])) {
     $_SESSION['user'] = new User();
 }
 
+$username = $_POST['username'] ?? '';
+
 if (!isset($_SESSION['username'])) {
-    $_SESSION['username'] = $username;
+    $_SESSION['username'] = $username ;
 }
 
-$username = $_POST['username'] ?? '';
 $user = $_SESSION['user'] ?? '';
 
 $user->setName($username);
@@ -47,22 +48,22 @@ $user->setName($username);
         Available Dokkaebis:
     </label>
 
-    <input type="radio" name="dokkaebiType" value="biyoo" onclick="mostrarImagem1()">
+    <input type="radio" name="dokkaebiType" value="biyoo" onclick="mostrarImagem1()" required>
     <label for="biyoo">
         Biyoo <?php $dokkaebichosen = 'biyoo' ?>
     </label>
     
-    <input type="radio" name="dokkaebiType" value="bihyung" onclick="mostrarImagem2()">
+    <input type="radio" name="dokkaebiType" value="bihyung" onclick="mostrarImagem2()" required>
     <label for="bihyung">
         Bihyung <?php $dokkaebichosen = 'bihyung' ?>
     </label>
 
-    <input type="radio" name="dokkaebiType" value="youngki" onclick="mostrarImagem3()">
+    <input type="radio" name="dokkaebiType" value="youngki" onclick="mostrarImagem3()" required>
     <label for="youngki">
         Youngki <?php $dokkaebichosen = 'youngki' ?>
     </label>
     
-    <input type="radio" name="dokkaebiType" value="biryu" onclick="mostrarImagem4()">
+    <input type="radio" name="dokkaebiType" value="biryu" onclick="mostrarImagem4()" required>
     <label for="biryu">
         Biryu   <?php $dokkaebichosen = 'biryu' ?>
     </label>

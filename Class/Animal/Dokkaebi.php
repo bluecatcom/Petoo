@@ -15,9 +15,10 @@ class Dokkaebi extends Animal
     protected float $age;
 
     // Aparence
-    protected string $eyes;
-    protected string $body;
-    protected string $ears;
+    protected string $type;
+    //  protected string $eyes;
+    //  protected string $body;
+    //  protected string $ears;
 
     // Necessity
     protected int $hunger;

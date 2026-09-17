@@ -3,6 +3,7 @@
 namespace App\Game\GameCLI;
 
 use App\Animal\Dokkaebi;
+use App\Animal\Essentials\Bowl;
 
 require_once __DIR__ . '/../bootstrap.php';
 
@@ -17,11 +18,16 @@ if (!isset($_SESSION['dokkaebi'])) {
 if (!isset($_SESSION['dokkaebiName'])) {
     $_SESSION['dokkaebiName'];
 }
+$dokkaebiName = $_SESSION['dokkaebiName'] ?? '';
+$biyoo = $_SESSION['dokkaebi'] ?? '';
 
 
-$_SESSION['dokkaebi']->setName($_SESSION['dokkaebiName']);
+$biyoo->setName($dokkaebiName);
 
-$biyoo = $_SESSION['dokkaebi'];
+if (!isset($_SESSION['bowl'])) {
+    $_SESSION['bowl'] = new Bowl($biyoo);
+}
+$bowl = $_SESSION['bowl'] ?? '';
 
 ?>
 
@@ -70,6 +76,17 @@ $biyoo = $_SESSION['dokkaebi'];
             <?= $biyoo->getState() ?>
         </span> <br> </br>
 
+        <label>
+            Bowls:
+        </label>
+        <span id="bowlfeed">
+            <?= $bowl->checkFeedFill() ?>
+        </span> <br> </br>
+        <span id="bowlwater">
+            <?= $bowl->checkWaterFill() ?>
+        </span> <br> </br>
+        
+        
         <script>
             async function updateDokkaebi() {
             const response = await fetch('Gametick.php');
@@ -81,6 +98,8 @@ $biyoo = $_SESSION['dokkaebi'];
             document.getElementById('sleep').textContent = data.sleep;
             document.getElementById('state').textContent = data.state;
             document.getElementById('moomins').textContet = data.moomins;
+            document.getElementByID('bowlfeed').textContent = data.bowlfeed;
+            document.getElementByID('bowlwater').textContent = data.bowlwater;
         }
             setInterval(updateDokkaebi, 5000);
         </script>

@@ -9,6 +9,7 @@ use App\Animal\Dokkaebi;
 
 require_once __DIR__ . '/bootstrap.php';
 
+
 $dokkaebiName = $_POST['dokkaebiName'] ?? '';
 
 if (!isset($_SESSION['dokkaebiName'])) {
